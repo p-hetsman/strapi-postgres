@@ -1,0 +1,24 @@
+config:
+  # This is a test server run by team Artillery
+  # It's designed to be highly scalable
+  target: http://localhost:1337
+  http:
+    timeout: 100
+  phases:
+    - duration: 30
+      arrivalRate: 300
+      name: Spike phase
+  # Load & configure a couple of useful plugins
+  # https://docs.art/reference/extensions
+  plugins:
+    ensure: {}
+    apdex: {}
+    metrics-by-endpoint: {}
+  apdex:
+    threshold: 100
+scenarios:
+  - flow:
+      - loop:
+          - get:
+              url: '/api/restaurants?sort[0]=Name:asc&populate[categories][populate][0]=dishes&populate[waiters]=true&pagination[pageSize]=1000000&pagination[page]=1'
+        count: 1

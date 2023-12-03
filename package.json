@@ -17,7 +17,7 @@
     "@strapi/plugin-i18n": "4.14.5",
     "@strapi/plugin-users-permissions": "4.14.5",
     "@strapi/strapi": "4.14.5",
-    "pg": "7.18.2"
+    "pg": "8.8.0"
   },
   "devDependencies": {},
   "engines": {

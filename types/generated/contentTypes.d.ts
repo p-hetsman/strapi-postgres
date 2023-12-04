@@ -625,6 +625,8 @@ export interface ApiPostPost extends Schema.CollectionType {
     subcategory: Attribute.String;
     tags: Attribute.Relation<'api::post.post', 'manyToMany', 'api::tag.tag'>;
     comments: Attribute.Relation<'api::post.post', 'oneToMany', 'api::comment.comment'>;
+    pictures: Attribute.JSON;
+    backlinks: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -50,6 +50,12 @@
       "relation": "oneToMany",
       "target": "api::comment.comment",
       "mappedBy": "post"
+    },
+    "pictures": {
+      "type": "json"
+    },
+    "backlinks": {
+      "type": "json"
     }
   }
 }

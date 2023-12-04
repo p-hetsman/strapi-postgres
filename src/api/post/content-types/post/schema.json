@@ -56,6 +56,9 @@
     },
     "backlinks": {
       "type": "json"
+    },
+    "notifications": {
+      "type": "json"
     }
   }
 }

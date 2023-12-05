@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "recent_news",
+  "info": {
+    "singularName": "recent-new",
+    "pluralName": "recent-news",
+    "displayName": "Recent News"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "date"
+    },
+    "body": {
+      "type": "text"
+    },
+    "link": {
+      "type": "string"
+    },
+    "imageUrl": {
+      "type": "string"
+    }
+  }
+}

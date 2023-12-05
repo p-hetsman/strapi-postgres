@@ -636,6 +636,29 @@ export interface ApiPostPost extends Schema.CollectionType {
   };
 }
 
+export interface ApiRecentNewRecentNew extends Schema.CollectionType {
+  collectionName: 'recent_news';
+  info: {
+    singularName: 'recent-new';
+    pluralName: 'recent-news';
+    displayName: 'Recent News';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    date: Attribute.Date;
+    body: Attribute.Text;
+    link: Attribute.String;
+    imageUrl: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::recent-new.recent-new', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::recent-new.recent-new', 'oneToOne', 'admin::user'> & Attribute.Private;
+  };
+}
+
 export interface ApiRestaurantRestaurant extends Schema.CollectionType {
   collectionName: 'restaurants';
   info: {
@@ -724,6 +747,7 @@ declare module '@strapi/types' {
       'api::comment.comment': ApiCommentComment;
       'api::dish.dish': ApiDishDish;
       'api::post.post': ApiPostPost;
+      'api::recent-new.recent-new': ApiRecentNewRecentNew;
       'api::restaurant.restaurant': ApiRestaurantRestaurant;
       'api::tag.tag': ApiTagTag;
       'api::waiter.waiter': ApiWaiterWaiter;

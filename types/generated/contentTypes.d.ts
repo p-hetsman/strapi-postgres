@@ -602,6 +602,27 @@ export interface ApiDishDish extends Schema.CollectionType {
   };
 }
 
+export interface ApiEventEvent extends Schema.CollectionType {
+  collectionName: 'events';
+  info: {
+    singularName: 'event';
+    pluralName: 'events';
+    displayName: 'event';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    text: Attribute.Text;
+    date: Attribute.Date;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::event.event', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::event.event', 'oneToOne', 'admin::user'> & Attribute.Private;
+  };
+}
+
 export interface ApiPostPost extends Schema.CollectionType {
   collectionName: 'posts';
   info: {
@@ -746,6 +767,7 @@ declare module '@strapi/types' {
       'api::client.client': ApiClientClient;
       'api::comment.comment': ApiCommentComment;
       'api::dish.dish': ApiDishDish;
+      'api::event.event': ApiEventEvent;
       'api::post.post': ApiPostPost;
       'api::recent-new.recent-new': ApiRecentNewRecentNew;
       'api::restaurant.restaurant': ApiRestaurantRestaurant;

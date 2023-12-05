@@ -607,14 +607,15 @@ export interface ApiEventEvent extends Schema.CollectionType {
   info: {
     singularName: 'event';
     pluralName: 'events';
-    displayName: 'event';
+    displayName: 'Event';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     text: Attribute.Text;
-    date: Attribute.Date;
+    published: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

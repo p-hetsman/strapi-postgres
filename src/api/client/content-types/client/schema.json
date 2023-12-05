@@ -12,11 +12,23 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "firstName": {
       "type": "string"
     },
-    "role": {
+    "lastName": {
       "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "initials": {
+      "type": "string"
+    },
+    "clientId": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "text"
     }
   }
 }

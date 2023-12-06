@@ -683,12 +683,13 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     singularName: 'category';
     pluralName: 'categories';
     displayName: 'Category';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Name: Attribute.String & Attribute.Required & Attribute.Unique;
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
     restaurants: Attribute.Relation<
       'api::category.category',
       'manyToMany',
@@ -735,6 +736,16 @@ export interface ApiClientClient extends Schema.CollectionType {
     initials: Attribute.String;
     clientId: Attribute.String;
     notes: Attribute.Text;
+    design: Attribute.Relation<
+      'api::client.client',
+      'oneToOne',
+      'api::design.design'
+    >;
+    measurment_data: Attribute.Relation<
+      'api::client.client',
+      'oneToMany',
+      'api::measurment-data.measurment-data'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -783,6 +794,56 @@ export interface ApiCommentComment extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::comment.comment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDesignDesign extends Schema.CollectionType {
+  collectionName: 'designs';
+  info: {
+    singularName: 'design';
+    pluralName: 'designs';
+    displayName: 'design';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    product_template: Attribute.Relation<
+      'api::design.design',
+      'oneToOne',
+      'api::product-template.product-template'
+    >;
+    client: Attribute.Relation<
+      'api::design.design',
+      'oneToOne',
+      'api::client.client'
+    >;
+    status: Attribute.Relation<
+      'api::design.design',
+      'oneToOne',
+      'api::status.status'
+    >;
+    measurment_data: Attribute.Relation<
+      'api::design.design',
+      'oneToOne',
+      'api::measurment-data.measurment-data'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::design.design',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::design.design',
       'oneToOne',
       'admin::user'
     > &
@@ -851,6 +912,48 @@ export interface ApiEventEvent extends Schema.CollectionType {
   };
 }
 
+export interface ApiMeasurmentDataMeasurmentData extends Schema.CollectionType {
+  collectionName: 'measurments_data';
+  info: {
+    singularName: 'measurment-data';
+    pluralName: 'measurments-data';
+    displayName: 'measurmentData';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    doctor: Attribute.String;
+    area: Attribute.String;
+    client: Attribute.Relation<
+      'api::measurment-data.measurment-data',
+      'manyToOne',
+      'api::client.client'
+    >;
+    design: Attribute.Relation<
+      'api::measurment-data.measurment-data',
+      'oneToOne',
+      'api::design.design'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::measurment-data.measurment-data',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::measurment-data.measurment-data',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPostPost extends Schema.CollectionType {
   collectionName: 'posts';
   info: {
@@ -887,6 +990,44 @@ export interface ApiPostPost extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProductTemplateProductTemplate
+  extends Schema.CollectionType {
+  collectionName: 'product_templates';
+  info: {
+    singularName: 'product-template';
+    pluralName: 'product-templates';
+    displayName: 'productTemplate';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    productId: Attribute.UID;
+    title: Attribute.String;
+    picUrl: Attribute.String;
+    design: Attribute.Relation<
+      'api::product-template.product-template',
+      'oneToOne',
+      'api::design.design'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product-template.product-template',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::product-template.product-template',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -958,6 +1099,36 @@ export interface ApiRestaurantRestaurant extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::restaurant.restaurant',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiStatusStatus extends Schema.CollectionType {
+  collectionName: 'statuses';
+  info: {
+    singularName: 'status';
+    pluralName: 'statuses';
+    displayName: 'status';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    status: Attribute.Enumeration<['inProgress', 'done']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::status.status',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::status.status',
       'oneToOne',
       'admin::user'
     > &
@@ -1044,11 +1215,15 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::client.client': ApiClientClient;
       'api::comment.comment': ApiCommentComment;
+      'api::design.design': ApiDesignDesign;
       'api::dish.dish': ApiDishDish;
       'api::event.event': ApiEventEvent;
+      'api::measurment-data.measurment-data': ApiMeasurmentDataMeasurmentData;
       'api::post.post': ApiPostPost;
+      'api::product-template.product-template': ApiProductTemplateProductTemplate;
       'api::recent-new.recent-new': ApiRecentNewRecentNew;
       'api::restaurant.restaurant': ApiRestaurantRestaurant;
+      'api::status.status': ApiStatusStatus;
       'api::tag.tag': ApiTagTag;
       'api::waiter.waiter': ApiWaiterWaiter;
     }

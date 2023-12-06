@@ -29,6 +29,18 @@
     },
     "notes": {
       "type": "text"
+    },
+    "design": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::design.design",
+      "mappedBy": "client"
+    },
+    "measurment_data": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::measurment-data.measurment-data",
+      "mappedBy": "client"
     }
   }
 }

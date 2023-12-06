@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "measurments_data",
+  "info": {
+    "singularName": "measurment-data",
+    "pluralName": "measurments-data",
+    "displayName": "measurmentData",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "doctor": {
+      "type": "string"
+    },
+    "area": {
+      "type": "string"
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "measurment_data"
+    },
+    "design": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::design.design",
+      "mappedBy": "measurment_data"
+    }
+  }
+}

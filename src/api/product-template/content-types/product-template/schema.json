@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "product_templates",
+  "info": {
+    "singularName": "product-template",
+    "pluralName": "product-templates",
+    "displayName": "productTemplate"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "productId": {
+      "type": "uid"
+    },
+    "title": {
+      "type": "string"
+    },
+    "picUrl": {
+      "type": "string"
+    },
+    "design": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::design.design",
+      "mappedBy": "product_template"
+    }
+  }
+}

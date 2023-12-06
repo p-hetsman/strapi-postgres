@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "designs",
+  "info": {
+    "singularName": "design",
+    "pluralName": "designs",
+    "displayName": "design",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "product_template": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product-template.product-template",
+      "inversedBy": "design"
+    },
+    "client": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::client.client",
+      "inversedBy": "design"
+    },
+    "status": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::status.status"
+    },
+    "measurment_data": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::measurment-data.measurment-data",
+      "inversedBy": "design"
+    }
+  }
+}
